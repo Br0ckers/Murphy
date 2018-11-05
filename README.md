@@ -1,5 +1,6 @@
 # Murphy
 
+# Instructions below included by SVR 5/12/2018 1745
 Instructions for creating Database (refer to instructions from /db/migrations/01_create_DB_table.sql:
 
 terminal> psql postgres
@@ -20,3 +21,4 @@ postgres=# issue the create table command here <refer to the sql file for instru
 list the tables creted
 postgres=# \dt 
 postgres=# \d+ <tablename>
+#--------- changes end SVR --------------
