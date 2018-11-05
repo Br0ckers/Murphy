@@ -21,4 +21,5 @@ postgres=# issue the create table command here <refer to the sql file for instru
 list the tables creted
 postgres=# \dt 
 postgres=# \d+ <tablename>
+	
 #--------- changes end SVR --------------
