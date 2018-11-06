@@ -14,7 +14,7 @@ enable :sessions
 
   get '/sign_in' do
    erb :sign_in
- end
+  end
 
   get '/spaces/new' do
     erb :add_space
