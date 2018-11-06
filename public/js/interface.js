@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+  $('#book_add_space_btn').on('click', function() {
+    $(location).attr('href','/spaces/new');
+  })
+
   $('#signUp_submit').on('click', function() {
     var email = $('#email').val();
     var password = $('#password').val();

@@ -19,6 +19,10 @@ enable :sessions
   get '/spaces/new' do
     erb :add_space
   end
+
+  get '/spaces' do
+    erb :list_spaces
+  end
   # comment for testing
 
   post '/createuser' do
