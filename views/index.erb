@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sign in page</title>
+    <!-- Sundar changed the title below from Sign in Page to Sign Up Page -->
+    <title>Sign Up Page</title>
+     <script src="src/User.js"> </script>
+     <script src="https://code.jquery.com/jquery-2.1.4.min.js"> </script>
+
   </head>
   <body>
-    <h1>This is the sign up page.</h1>
+    <!-- added sign in link for those who already have an account -->
+    <a href="/sign_in">Log In</a>
+    <h1>Sign up to Makers BnB</h1>
     <!-- DB/ZH 6/11 - added user form below -->
-    <form action="/users" method="post">
       <input id="email" type="email" name="email" placeholder="Email"/><br><br>
       <input id="password" type="password" name="password" placeholder="Password"/><br><br>
       <input id="password2" type="password" name="password confirmation" placeholder="Password Confirmation"/><br><br>
-      <input type="submit" value="Sign Up" />
-    </form>
+      <button id="signUp_submit">Sign Up</button>
+
     <!-- DB/ZH 6/11 - added user form above -->
   </body>
 </html>
