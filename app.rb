@@ -1,7 +1,7 @@
 require 'sinatra/base'
 require 'pg'
-require './lib/user'
-require './lib/space'
+#require './lib/user'
+#require './lib/space'
 
 # adding comment to test merge
 class MurphyManager < Sinatra::Base

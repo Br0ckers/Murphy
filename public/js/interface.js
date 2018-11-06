@@ -11,7 +11,8 @@ $(document).ready(function() {
 	      data: {
 	        email: email,
 	        password: password
-	    });
+	       }
+    });
   });
 
   $('#listing_submit').on('click', function() {
@@ -26,9 +27,11 @@ $(document).ready(function() {
 	        property_name: property_name,
 	        property_description: property_description,
           price_per_night: price_per_night
-	    });
+	       }
+    });
+
+
+
   });
-
-
 
 });
