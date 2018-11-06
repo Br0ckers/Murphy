@@ -37,7 +37,7 @@ enable :sessions
     price_per_night = params[:price_per_night]
 
     Space.create(property_name, property_description, price_per_night)
-    # get the space parameters
+    # get the space parameters_
   end
 
   run! if app_file == $0
