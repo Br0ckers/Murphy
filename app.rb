@@ -1,6 +1,6 @@
 require 'sinatra/base'
 require 'pg'
-#require './lib/user'
+require './lib/user'
 #require './lib/space'
 
 # adding comment to test merge
@@ -26,13 +26,13 @@ enable :sessions
   # comment for testing
 
   post '/createuser' do
+    # This code needs to be changed such that it does not return or redirect - SVR 061118 1751
     email = params[:email]
     password = params[:password]
     user_id = User.create(email, password)
       if user_id != nil
         session[:user_id] = user_id
       end
-  	# get the user email and password using params
   end
 
   post '/spaces/add' do
