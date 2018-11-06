@@ -6,6 +6,10 @@ class MurphyManager < Sinatra::Base
     erb :index
   end
 
+  get '/sign_in' do
+    erb :sign_in
+  end
+
   get '/spaces/new' do
     erb :add_space
   end
