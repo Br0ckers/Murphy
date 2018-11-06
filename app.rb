@@ -6,5 +6,9 @@ class MurphyManager < Sinatra::Base
     erb :index
   end
 
+  get '/spaces/new' do
+    erb :add_space
+  end
+
   run! if app_file == $0
 end
