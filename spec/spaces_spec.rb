@@ -17,9 +17,10 @@ describe Space do
 		it 'returns the space_id from table' do
 			space_id = 0
 			user = User.create('email', 'password')
-			space = Space.new
+			# space = Space.new
 			con = Space.create(user[0], 'space_name', 'space_desc', 99.99)
-			expect(space.getSpaces.length).to eq 1
+			p Space.spacesList
+			expect(Space.spacesList.length).to eq 1
 		end
 	end
 
