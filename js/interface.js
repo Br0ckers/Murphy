@@ -1,17 +1,22 @@
 $(document).ready(function() {
   var js_user_id, js_user_email;
+
+  $('#user-sign').hide();
+  $('#addspace').hide();
+  $('#bookspace').hide();
+
   $('#book_add_space_btn').on('click', function() {
     $(location).attr('href','/spaces/new');
   })
 
   $('#signUp_submit').on('click', function() {
-    var email = $('#email').val();
-    var password = $('#password').val();
-    var password2 = $('#password2').val();
+    var email = $('#reg_email').val();
+    var password = $('#reg_password').val();
+    var password2 = $('#reg_password2').val();
 
     $.ajax({
 	      type: "POST",
-	      url: "/createuser",
+	      url: "http://localhost:9292/createuser",
 	      data: {
 	        email: email,
 	        password: password
@@ -20,7 +25,9 @@ $(document).ready(function() {
            //console.log(result);
            js_user_id = result;
            js_email_id = email;
-           $(location).attr('href','/spaces');
+           $('#user-reg').hide();
+           $('#bookspace').show();
+          // $(location).attr('href','/spaces');
          }
     });
   });

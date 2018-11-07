@@ -8,6 +8,10 @@ class MurphyManager < Sinatra::Base
 
 enable :sessions
 
+  before do
+    headers 'Access-Control-Allow-Origin' => '*',
+    'Access-Control-Allow-Methods' => ['OPTIONS','GET','POST']
+  end
   get '/' do
     erb :index
   end
@@ -30,7 +34,7 @@ enable :sessions
     email = params[:email]
     password = params[:password]
     User.create(email, password)
-    
+
   end
 
   post '/spaces/add' do
