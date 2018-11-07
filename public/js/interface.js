@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+  var js_user_id, js_user_email;
   $('#book_add_space_btn').on('click', function() {
     $(location).attr('href','/spaces/new');
   })
@@ -15,7 +15,13 @@ $(document).ready(function() {
 	      data: {
 	        email: email,
 	        password: password
-	       }
+        },
+         success:function(result,status,jqx) {
+           //console.log(result);
+           js_user_id = result;
+           js_email_id = email;
+           $(location).attr('href','/spaces');
+         }
     });
   });
 
