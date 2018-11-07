@@ -29,10 +29,8 @@ enable :sessions
     # This code needs to be changed such that it does not return or redirect - SVR 061118 1751
     email = params[:email]
     password = params[:password]
-    user_id = User.create(email, password)
-      if user_id != nil
-        session[:user_id] = user_id
-      end
+    User.create(email, password)
+    
   end
 
   post '/spaces/add' do

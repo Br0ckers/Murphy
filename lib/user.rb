@@ -15,8 +15,11 @@ class User
 
 	def createUser(email,password)
 	#	p "createUser called #{email}::#{password}"
-		prep_str = "INSERT INTO murphy_users(email,password) values('"+email+"','"+password+"');"
+		prep_str = "INSERT INTO murphy_users(email,password) values('"+email+"','"+password+"') RETURNING user_id;"
 		result = @connection.exec(prep_str)
+		result.map{|item|
+			item['user_id']
+		}
 	end
 
 	def getUser(email)
