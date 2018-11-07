@@ -23,10 +23,13 @@
     <h3>Please select this button if you have an account</h3> <!-- DB/ZH added -->
     <button id="header-log-in">Log In</button> <!-- DB/ZH changed to id -->
     <h1>Sign up to Makers BnB</h1>
-      <input id="reg_email" type="email" name="email" placeholder="Email"><br><br>
-      <input id="reg_password" type="password" name="password" placeholder="Password"/><br><br>
+    <!-- DB/ZH 6/11 - added user form below -->
+      <input id="reg_email" type="email" name="email" placeholder="Email"/><br><br>
+      <input id="reg_password" type="password" name="password" placeholder="Password" required autofocus/><br><br>
       <input id="reg_password2" type="password" name="password confirmation" placeholder="Password Confirmation"/><br><br>
-      <button id="signUp_submit">Sign Up</button> <!-- DB/ZH changed to "Sign Up" -->
+      <button id="signUp_submit">Sign Up</button>
+      <!-- Tag below was included by Sundar to display any error/warning message during user registration -->
+      <p><h2 id="reg_messages"></h2>
     </div>
     <div id="addspace">
       <h1>List a space</h1>
