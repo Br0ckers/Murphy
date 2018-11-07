@@ -12,17 +12,16 @@
   <body>
     <!-- added sign in link for those who already have an account -->
     <div id="user-sign">
-      <button class="header-sign-up">Sign Up</button>
-      <h1>Log in to Makers BnB</h1>
-      <form action="/signin" method="post">
-          <input id="sign_email" type="email" name="email" placeholder="Email"/><br><br>
+      <h3>Please select this button if you do not have an account</h3> <!-- DB/ZH added -->
+      <button id="header-sign-up">Sign Up</button> <!-- DB/ZH changed to id -->
+      <h1>Log in to Makers BnB</h1> <!-- DB/ZH removed form -->
+          <input id="sign_email" type="email" name="email" placeholder="Email"><br><br>
           <input id="sign_password" type="password" name="password" placeholder="Password"/><br><br>
-          <button id="signin_submit">Sign Up</button>
-      </form>
+          <button id="signin_submit">Log In</button>
     </div>
-
     <div id="user-reg">
-    <button class="header-log-in">Log In</button>
+    <h3>Please select this button if you have an account</h3> <!-- DB/ZH added -->
+    <button id="header-log-in">Log In</button> <!-- DB/ZH changed to id -->
     <h1>Sign up to Makers BnB</h1>
     <!-- DB/ZH 6/11 - added user form below -->
       <input id="reg_email" type="email" name="email" placeholder="Email"/><br><br>

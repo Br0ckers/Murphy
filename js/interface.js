@@ -10,7 +10,13 @@ $(document).ready(function() {
   $('#bookspace').hide();
 
   $('#book_add_space_btn').on('click', function() {
-    $(location).attr('href','/spaces/new');
+    $('#bookspace').hide();
+    $('#addspace').show();
+  })
+
+  $('#header-log-in').on('click', function() {
+    $('#user-reg').hide();
+    $('#user-sign').show();
   })
 
   $('#signUp_submit').on('click', function() {
@@ -47,6 +53,28 @@ $(document).ready(function() {
     }
 });
 
+  // DB/ZH added signin_submit section below
+  $('#signin_submit').on('click', function() {
+    var email = $('#sign_email').val();
+    var password = $('#sign_password').val();
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:9292/signin_user",
+        data: {
+          email: email,
+          password: password
+        },
+         success:function(result,status,jqx) {
+           //console.log(result);
+           js_user_id = result;
+           js_email_id = email;
+           $('#user-sign').hide();
+           $('#bookspace').show();
+         }
+    });
+  });
+
   $('#listing_submit').on('click', function() {
     var property_name = $('#property_name').val();
     var property_description = $('#property_description').val();
@@ -54,12 +82,21 @@ $(document).ready(function() {
 
     $.ajax({
 	      type: "POST",
-	      url: "/spaces/add",
+	      url: "http://localhost:9292/createspaces",
 	      data: {
-	        property_name: property_name,
+	        owner_id: 18,
+          property_name: property_name,
 	        property_description: property_description,
           price_per_night: price_per_night
-	       }
+        },
+        success:function(result,status,jqx) {
+          //console.log(result);
+          //js_user_id = result;
+          //js_email_id = email;
+          $('#addspace').hide();
+          $('#bookspace').show();
+         // $(location).attr('href','/spaces');
+        }
     });
   });
 
