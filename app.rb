@@ -12,22 +12,6 @@ enable :sessions
     headers 'Access-Control-Allow-Origin' => '*',
     'Access-Control-Allow-Methods' => ['OPTIONS','GET','POST']
   end
-  get '/' do
-    erb :index
-  end
-
-  get '/sign_in' do
-   erb :sign_in
-  end
-
-  get '/spaces/new' do
-    erb :add_space
-  end
-
-  get '/spaces' do
-    erb :list_spaces
-  end
-  # comment for testing
 
   post '/createuser' do
     # This code needs to be changed such that it does not return or redirect - SVR 061118 1751
@@ -37,11 +21,10 @@ enable :sessions
 
   end
 
-  post '/spaces/add' do
+  post '/createspaces' do
     property_name = params[:property_name]
     property_description = params[:property_description]
     price_per_night = params[:price_per_night]
-
     Space.create(property_name, property_description, price_per_night)
     # get the space parameters_
   end
