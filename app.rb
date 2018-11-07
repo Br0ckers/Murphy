@@ -21,6 +21,14 @@ enable :sessions
 
   end
 
+  # DB/ZH added post '/signin_user' section below
+  post '/signin_user' do
+    email = params[:email]
+    password = params[:password]
+    user = User.new
+    user.signin_user(email, password)
+  end
+
   post '/createspaces' do
     property_name = params[:property_name]
     property_description = params[:property_description]

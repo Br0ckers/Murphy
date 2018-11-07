@@ -22,12 +22,12 @@ class User
 		}
 	end
 
-	def getUser(email)
-	#	p "getUser called #{email}"
-		prep_str = "SELECT user_id from murphy_users WHERE email ='"+email+"';"
+  # DB/ZH signin_user method below
+	def signin_user(email, password)
+		prep_str = "SELECT user_id FROM murphy_users WHERE email = '"+email+"' AND password = '"+password+"';"
 		result = @connection.exec(prep_str)
 		result.map{|item|
-			item['user_id'].to_i
-		}
+			item['user_id']
+    }
 	end
 end
