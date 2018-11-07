@@ -1,7 +1,7 @@
 require 'sinatra/base'
 require 'pg'
 require './lib/user'
-#require './lib/space'
+require './lib/spaces'
 
 # adding comment to test merge
 class MurphyManager < Sinatra::Base
@@ -22,10 +22,11 @@ enable :sessions
   end
 
   post '/createspaces' do
+    owner_id = params[:owner_id]
     property_name = params[:property_name]
     property_description = params[:property_description]
     price_per_night = params[:price_per_night]
-    Space.create(property_name, property_description, price_per_night)
+    Space.create(owner_id, property_name, property_description, price_per_night)
     # get the space parameters_
   end
 
