@@ -6,7 +6,8 @@ $(document).ready(function() {
   $('#bookspace').hide();
 
   $('#book_add_space_btn').on('click', function() {
-    $(location).attr('href','/spaces/new');
+    $('#bookspace').hide();
+    $('#addspace').show();
   })
 
   $('#signUp_submit').on('click', function() {
@@ -39,16 +40,22 @@ $(document).ready(function() {
 
     $.ajax({
 	      type: "POST",
-	      url: "/spaces/add",
+	      url: "http://localhost:9292/createspaces",
 	      data: {
-	        property_name: property_name,
+	        owner_id: 18,
+          property_name: property_name,
 	        property_description: property_description,
           price_per_night: price_per_night
-	       }
+        },
+        success:function(result,status,jqx) {
+          //console.log(result);
+          //js_user_id = result;
+          //js_email_id = email;
+          $('#addspace').hide();
+          $('#bookspace').show();
+         // $(location).attr('href','/spaces');
+        }
     });
-
-
-
   });
 
 });
