@@ -49,6 +49,8 @@ $(document).ready(function() {
                success:function(result,status,jqx) {
                  js_user_id = result;
                  js_email_id = email;
+                 murphy.logged_in_user_id = js_user_id
+                 // console.log(murphy.logged_in_user_id)
                  $('#user-reg').hide();
                  $('#bookspace').show();
                }
