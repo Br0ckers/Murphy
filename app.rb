@@ -38,5 +38,10 @@ enable :sessions
     # get the space parameters_
   end
 
+  get '/spaces/get' do
+    JSON.pretty_generate(Space.spacesList())
+    # "test"
+  end
+
   run! if app_file == $0
 end

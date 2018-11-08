@@ -25,11 +25,22 @@ class Space
 		}
 	end
 
+	def self.spacesList()
+		space = Space.new
+		# p "test2"
+		space.getSpaces()
+	end
+
 	def getSpaces()
 	#	p "getSpace called #{email}"
+	p "test3"
 		prep_str = "SELECT * from murphy_spaces;"
 		result = @connection.exec(prep_str)
-		result.map{|item| {id: item['space_id'], owner_id: item['owner_id'], space_name: item['space_name'], space_desc: item['space_desc'], price_per_night: item['price_per_night']}
+	result.map{|item| {id: item['space_id'], owner_id: item['owner_id'], space_name: item['space_name'], space_desc: item['space_desc'], price_per_night: item['price_per_night']}
 		}
+		# p "test4"
+		# p results_returned[1]
+		# result.map{|item| item['space_name']}
+		# return result[1]
 	end
 end
