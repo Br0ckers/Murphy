@@ -1,11 +1,24 @@
 $(document).ready(function() {
   var js_user_id, js_user_email;
+
+  // Setup for show and hide behaviour
+  (function ($) {
+	  $.each(['show', 'hide'], function (i, ev) {
+	    var el = $.fn[ev];
+	    $.fn[ev] = function () {
+	      this.trigger(ev);
+	      return el.apply(this, arguments);
+	    };
+	  });
+	})(jQuery);
+
   // Line below included by SVR
   var validations ={
   email: [/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/, 'Please enter a valid email address']
   };
 
   murphy = new Bnb
+  getData()
 
   $('#user-sign').hide();
   $('#addspace').hide();
@@ -55,7 +68,6 @@ $(document).ready(function() {
                  js_user_id = result;
                  js_email_id = email;
                  murphy.logged_in_user_id = js_user_id
-                 // console.log(murphy.logged_in_user_id)
                  $('#user-reg').hide();
                  $('#bookspace').show();
                }
@@ -85,6 +97,7 @@ $(document).ready(function() {
          success:function(result,status,jqx) {
            js_user_id = result;
            js_email_id = email;
+
            if (js_user_id.length === 0) {
              alert('Incorrect Login Credentials');
            } else {
@@ -99,6 +112,27 @@ $(document).ready(function() {
     });
     }
   });
+  //Add custom handler on show event and print message
+  $('#bookspace').on('show', function(){
+    console.log("show book space")
+      getData()
+      var arr = Object.entries(murphy.spaces);
+      console.log(arr)
+      arr.forEach(function(index, value) {
+        $( '#accommodation').append("<div class='listings' id='listing"+index[0]+"'>")
+          $( '#listing'+index[0]+'').append("<img width='219px' height='155px' src='images/apartment_image.jpg' />")
+          $( '#listing'+index[0]+'').append("<div class='location'>"+index[1]['space_desc']+"</div>")
+          $( '#listing'+index[0]+'').append("<div class='title'>"+index[1]['space_name']+"</div>")
+          $( '#listing'+index[0]+'').append("<div class='price'>£"+index[1]['price_per_night']+"</div>")
+        $( '#accommodation').append("</div>")
+      })
+
+  });
+
+  $('#bookspace').hide('hide', function(){
+      console.log("Book space hidden!!!!")
+
+  });
 
   $('#listing_submit').on('click', function() {
     var property_name = $('#property_name').val();
@@ -109,39 +143,33 @@ $(document).ready(function() {
 	      type: "POST",
 	      url: "http://localhost:9292/createspaces",
 	      data: {
-	        owner_id: 3,
+	        owner_id: murphy.logged_in_user_id,
           property_name: property_name,
 	        property_description: property_description,
           price_per_night: price_per_night
         },
         success:function(result,status,jqx) {
-          //console.log(result);
-          //js_user_id = result;
-          //js_email_id = email;
           $('#addspace').hide();
           $('#bookspace').show();
+          // console.log(result)
           document.title = 'Book a space | Murphy BnB';
-          getData()
-         // $(location).attr('href','/spaces');
+          //murphy.saveSpaces({id: result, owner_id: murphy.logged_in_user_id, space_name: property_name, space_desc: property_description, price_per_night: price_per_night})
+          // getData()
+          console.log(murphy.getSpaces())
         }
     });
   });
 
 
-  function getData () {
+  async function getData () {
     $.getJSON({
 	      type: "get",
 	      url: "http://localhost:9292/spaces/get",
         success:function(result) {
-          // console.log(result);
-          $.each(result,function(key,val){
-            // console.log(val)
+            murphy.spaces = []
+            $.each(result,function(key,val){
             murphy.saveSpaces(val)
-            // console.log(murphy.getSpaces())
-// new Space(val['space_name'], val['space_desc'], val['price_per_night']  )
-      // console.log(val['space_name'],val['space_desc'], val['price_per_night']);
-		});
-
+            });
         }
     });
   }

@@ -34,7 +34,7 @@ class Space
 	def getSpaces()
 	#	p "getSpace called #{email}"
 	p "test3"
-		prep_str = "SELECT * from murphy_spaces;"
+		prep_str = "SELECT * from murphy_spaces order by space_id desc;"
 		result = @connection.exec(prep_str)
 	result.map{|item| {id: item['space_id'], owner_id: item['owner_id'], space_name: item['space_name'], space_desc: item['space_desc'], price_per_night: item['price_per_night']}
 		}
