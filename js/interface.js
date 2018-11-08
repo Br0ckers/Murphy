@@ -63,7 +63,6 @@ $(document).ready(function() {
                  js_user_id = result;
                  js_email_id = email;
                  murphy.logged_in_user_id = js_user_id
-                 // console.log(murphy.logged_in_user_id)
                  $('#user-reg').hide();
                  $('#bookspace').show();
                }
@@ -85,37 +84,28 @@ $(document).ready(function() {
           password: password
         },
          success:function(result,status,jqx) {
-           //console.log(result);
            js_user_id = result;
            js_email_id = email;
            $('#user-sign').hide();
            $('#bookspace').show();
            document.title = 'Book a space | Murphy BnB';
-          // $(location).attr('href','/spaces');
-
          }
     });
   });
   //Add custom handler on show event and print message
   $('#bookspace').on('show', function(){
-      console.log("get data")
+    console.log("show book space")
       getData()
-      console.log(murphy.getSpaces())
-      console.log(typeof murphy.getSpaces())
-      var arr = Object.entries(murphy.getSpaces());
-      console.log(typeof arr,arr)
+      var arr = Object.entries(murphy.spaces);
+      console.log(arr)
       arr.forEach(function(index, value) {
-        console.log(value)
         $( '#accommodation').append("<div class='col-sm-3 col-md item'>")
-          $( '#accommodation').append("<img src='images/happiness_home.jpg' />")
-          $( '#accommodation').append("<p class='location'>Entire Apartment &bull; 1 bed</p>")
-          //$( '#accommodation').append("<p class='title'>"+value['space_name']+"</p>")
-          $( '#accommodation').append("<p class='price'>RM123 per night</p>")
+          $( '#accommodation').append("<img width='219px' height='155px' src='images/apartment_image.jpg' />")
+          $( '#accommodation').append("<p class='location'>"+index[1]['space_desc']+"</p>")
+          $( '#accommodation').append("<p class='title'>"+index[1]['space_name']+"</p>")
+          $( '#accommodation').append("<p class='price'>£"+index[1]['price_per_night']+"</p>")
         $( '#accommodation').append("</div>")
       })
-      //$( '#accommodation').append("<p id='test'>My <em>new</em> test</p>")
-
-
 
   });
 
@@ -139,33 +129,27 @@ $(document).ready(function() {
           price_per_night: price_per_night
         },
         success:function(result,status,jqx) {
-          //console.log(result);
-          //js_user_id = result;
-          //js_email_id = email;
           $('#addspace').hide();
           $('#bookspace').show();
+          // console.log(result)
           document.title = 'Book a space | Murphy BnB';
-
-         // $(location).attr('href','/spaces');
+          murphy.saveSpaces({id: result, owner_id: murphy.logged_in_user_id, space_name: property_name, space_desc: property_description, price_per_night: price_per_night})
+          // getData()
+          console.log(murphy.getSpaces())
         }
     });
   });
 
 
-  function getData () {
+  async function getData () {
     $.getJSON({
 	      type: "get",
 	      url: "http://localhost:9292/spaces/get",
         success:function(result) {
-          // console.log(result);
-          $.each(result,function(key,val){
-            // console.log(val)
+            murphy.spaces = []
+            $.each(result,function(key,val){
             murphy.saveSpaces(val)
-            // console.log(murphy.getSpaces())
-// new Space(val['space_name'], val['space_desc'], val['price_per_night']  )
-      // console.log(val['space_name'],val['space_desc'], val['price_per_night']);
-		});
-
+            });
         }
     });
   }
