@@ -26,7 +26,7 @@ class User
 	def signin_user(email, password)
 		prep_str = "SELECT user_id FROM murphy_users WHERE email = '"+email+"' AND password = '"+password+"';"
 		result = @connection.exec(prep_str)
-		result.map{|item|
+		id = result.map{|item|
 			item['user_id']
     }
 	end
