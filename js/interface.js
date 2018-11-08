@@ -97,12 +97,13 @@ $(document).ready(function() {
          success:function(result,status,jqx) {
            js_user_id = result;
            js_email_id = email;
-
+           // console.log(result)
            if (js_user_id.length === 0) {
              alert('Incorrect Login Credentials');
            } else {
              $('#user-sign').hide();
              $('#bookspace').show();
+             murphy.logged_in_user_id = js_user_id
              document.title = 'Book a space | Murphy BnB';
            }
 
