@@ -99,11 +99,11 @@ $(document).ready(function() {
       var arr = Object.entries(murphy.spaces);
       console.log(arr)
       arr.forEach(function(index, value) {
-        $( '#accommodation').append("<div class='col-sm-3 col-md item'>")
-          $( '#accommodation').append("<img width='219px' height='155px' src='images/apartment_image.jpg' />")
-          $( '#accommodation').append("<p class='location'>"+index[1]['space_desc']+"</p>")
-          $( '#accommodation').append("<p class='title'>"+index[1]['space_name']+"</p>")
-          $( '#accommodation').append("<p class='price'>£"+index[1]['price_per_night']+"</p>")
+        $( '#accommodation').append("<div class='listings' id='listing"+index[0]+"'>")
+          $( '#listing'+index[0]+'').append("<img width='219px' height='155px' src='images/apartment_image.jpg' />")
+          $( '#listing'+index[0]+'').append("<div class='location'>"+index[1]['space_desc']+"</div>")
+          $( '#listing'+index[0]+'').append("<div class='title'>"+index[1]['space_name']+"</div>")
+          $( '#listing'+index[0]+'').append("<div class='price'>£"+index[1]['price_per_night']+"</div>")
         $( '#accommodation').append("</div>")
       })
 
@@ -133,7 +133,7 @@ $(document).ready(function() {
           $('#bookspace').show();
           // console.log(result)
           document.title = 'Book a space | Murphy BnB';
-          murphy.saveSpaces({id: result, owner_id: murphy.logged_in_user_id, space_name: property_name, space_desc: property_description, price_per_night: price_per_night})
+          //murphy.saveSpaces({id: result, owner_id: murphy.logged_in_user_id, space_name: property_name, space_desc: property_description, price_per_night: price_per_night})
           // getData()
           console.log(murphy.getSpaces())
         }
