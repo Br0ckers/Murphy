@@ -1,19 +1,19 @@
 
 function Bnb (name, description, price) {
 
-this.allSpaces = []
+this.spaces = []
 }
 
-Bnb.prototype.saveSpaces = function (spaces) {
+Bnb.prototype.saveSpaces = function (space) {
 
-  console.log(spaces)
+  this.spaces.push(space)
 
 
 };
 
 Bnb.prototype.getSpaces = function () {
 
-  console.log(spaces)
+  return this.spaces
 
 
 };
