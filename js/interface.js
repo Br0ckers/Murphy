@@ -66,9 +66,15 @@ $(document).ready(function() {
 
   // DB/ZH added signin_submit section below
   $('#signin_submit').on('click', function() {
-    var email = $('#sign_email').val();
+    var email = ($('#sign_email').val()).toString();
     var password = $('#sign_password').val();
 
+    validation = new RegExp(validations['email'][0]);
+
+    if (!validation.test(email)){
+        // If the validation fails then we show the alert message
+        alert('Please enter a valid email');
+    } else {
     $.ajax({
         type: "POST",
         url: "http://localhost:9292/signin_user",
@@ -91,6 +97,7 @@ $(document).ready(function() {
 
          }
     });
+    }
   });
 
   $('#listing_submit').on('click', function() {
