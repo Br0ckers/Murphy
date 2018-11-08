@@ -1,11 +1,24 @@
 $(document).ready(function() {
   var js_user_id, js_user_email;
+
+  // Setup for show and hide behaviour
+  (function ($) {
+	  $.each(['show', 'hide'], function (i, ev) {
+	    var el = $.fn[ev];
+	    $.fn[ev] = function () {
+	      this.trigger(ev);
+	      return el.apply(this, arguments);
+	    };
+	  });
+	})(jQuery);
+
   // Line below included by SVR
   var validations ={
   email: [/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/, 'Please enter a valid email address']
   };
 
   murphy = new Bnb
+  getData()
 
   $('#user-sign').hide();
   $('#addspace').hide();
@@ -83,6 +96,33 @@ $(document).ready(function() {
          }
     });
   });
+  //Add custom handler on show event and print message
+  $('#bookspace').on('show', function(){
+      console.log("get data")
+      getData()
+      console.log(murphy.getSpaces())
+      console.log(typeof murphy.getSpaces())
+      var arr = Object.entries(murphy.getSpaces());
+      console.log(typeof arr,arr)
+      arr.forEach(function(index, value) {
+        console.log(value)
+        $( '#accommodation').append("<div class='col-sm-3 col-md item'>")
+          $( '#accommodation').append("<img src='images/happiness_home.jpg' />")
+          $( '#accommodation').append("<p class='location'>Entire Apartment &bull; 1 bed</p>")
+          //$( '#accommodation').append("<p class='title'>"+value['space_name']+"</p>")
+          $( '#accommodation').append("<p class='price'>RM123 per night</p>")
+        $( '#accommodation').append("</div>")
+      })
+      //$( '#accommodation').append("<p id='test'>My <em>new</em> test</p>")
+
+
+
+  });
+
+  $('#bookspace').hide('hide', function(){
+      console.log("Book space hidden!!!!")
+
+  });
 
   $('#listing_submit').on('click', function() {
     var property_name = $('#property_name').val();
@@ -93,7 +133,7 @@ $(document).ready(function() {
 	      type: "POST",
 	      url: "http://localhost:9292/createspaces",
 	      data: {
-	        owner_id: 3,
+	        owner_id: murphy.logged_in_user_id,
           property_name: property_name,
 	        property_description: property_description,
           price_per_night: price_per_night
@@ -105,7 +145,7 @@ $(document).ready(function() {
           $('#addspace').hide();
           $('#bookspace').show();
           document.title = 'Book a space | Murphy BnB';
-          getData()
+
          // $(location).attr('href','/spaces');
         }
     });
