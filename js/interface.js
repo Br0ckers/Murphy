@@ -36,6 +36,11 @@ $(document).ready(function() {
     $('#user-sign').show();
   })
 
+  $('#header-sign-up').on('click', function() {
+   $('#user-sign').hide();
+   $('#user-reg').show();
+ })
+
   $('#signUp_submit').on('click', function() {
     // email forced toString by SVR
     var email = ($('#reg_email').val()).toString();
@@ -73,9 +78,15 @@ $(document).ready(function() {
 
   // DB/ZH added signin_submit section below
   $('#signin_submit').on('click', function() {
-    var email = $('#sign_email').val();
+    var email = ($('#sign_email').val()).toString();
     var password = $('#sign_password').val();
 
+    validation = new RegExp(validations['email'][0]);
+
+    if (!validation.test(email)){
+        // If the validation fails then we show the alert message
+        alert('Please enter a valid email');
+    } else {
     $.ajax({
         type: "POST",
         url: "http://localhost:9292/signin_user",
@@ -86,11 +97,20 @@ $(document).ready(function() {
          success:function(result,status,jqx) {
            js_user_id = result;
            js_email_id = email;
-           $('#user-sign').hide();
-           $('#bookspace').show();
-           document.title = 'Book a space | Murphy BnB';
+
+           if (js_user_id.length === 0) {
+             alert('Incorrect Login Credentials');
+           } else {
+             $('#user-sign').hide();
+             $('#bookspace').show();
+             document.title = 'Book a space | Murphy BnB';
+           }
+
+          // $(location).attr('href','/spaces');
+
          }
     });
+    }
   });
   //Add custom handler on show event and print message
   $('#bookspace').on('show', function(){
