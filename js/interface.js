@@ -23,6 +23,11 @@ $(document).ready(function() {
     $('#user-sign').show();
   })
 
+  $('#header-sign-up').on('click', function() {
+   $('#user-sign').hide();
+   $('#user-reg').show();
+ })
+
   $('#signUp_submit').on('click', function() {
     // email forced toString by SVR
     var email = ($('#reg_email').val()).toString();
@@ -72,12 +77,16 @@ $(document).ready(function() {
           password: password
         },
          success:function(result,status,jqx) {
-           //console.log(result);
            js_user_id = result;
            js_email_id = email;
-           $('#user-sign').hide();
-           $('#bookspace').show();
-           document.title = 'Book a space | Murphy BnB';
+           if (js_user_id.length === 0) {
+             alert('Incorrect Login Credentials');
+           } else {
+             $('#user-sign').hide();
+             $('#bookspace').show();
+             document.title = 'Book a space | Murphy BnB';
+           }
+
           // $(location).attr('href','/spaces');
 
          }
