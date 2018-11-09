@@ -1,0 +1,31 @@
+#user-reg {
+  font: italic 1.2em "Fira Sans", serif;
+  border: thick double #32a;
+  width: 80%;
+  height: auto;
+  text-align: center;
+  margin: 10%;
+  background-color: lightgrey
+}
+
+#header-log-in {
+  background-color: blue;
+  color: white;
+  font-size: 16px;
+  border-radius: 12px;
+}
+
+#header-log-in:hover {
+  background-color: lightblue;
+}
+
+#signUp_submit {
+  background-color: red;
+  color: white;
+  font-size: 16px;
+  border-radius: 12px;
+}
+
+#signUp_submit:hover {
+  background-color: pink;
+}
