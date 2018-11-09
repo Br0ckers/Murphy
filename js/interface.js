@@ -124,7 +124,7 @@ $(document).ready(function() {
           $( '#listing'+index[0]+'').append("<img width='219px' height='155px' src='images/apartment_image.jpg' />")
           $( '#listing'+index[0]+'').append("<div class='location'>"+index[1]['space_desc']+"</div>")
           $( '#listing'+index[0]+'').append("<div class='title'>"+index[1]['space_name']+"</div>")
-          $( '#listing'+index[0]+'').append("<div class='price'>£"+index[1]['price_per_night']+"</div>")
+          $( '#listing'+index[0]+'').append("<div class='price'>&pound;"+index[1]['price_per_night']+"</div>")
         $( '#accommodation').append("</div>")
       })
 
