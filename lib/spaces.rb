@@ -1,5 +1,5 @@
 class Space
-
+#test comment
 	attr_reader :connection, :property_name, :property_description, :price_per_night
 
 	def initialize
